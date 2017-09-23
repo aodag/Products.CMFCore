@@ -17,8 +17,10 @@ from csv import reader
 from csv import writer
 import itertools
 import operator
-from ConfigParser import ConfigParser
-from StringIO import StringIO
+# from ConfigParser import ConfigParser
+from six.moves.configparser import ConfigParser
+# from StringIO import StringIO
+from io import StringIO
 
 from zope.component import getUtility
 from zope.interface import implementer

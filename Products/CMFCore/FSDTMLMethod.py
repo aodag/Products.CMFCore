@@ -13,6 +13,7 @@
 """ Customizable DTML methods that come from the filesystem.
 """
 
+from six import string_types
 from AccessControl.SecurityInfo import ClassSecurityInfo
 from AccessControl.SecurityManagement import getSecurityManager
 from App.class_init import InitializeClass
@@ -137,7 +138,7 @@ class FSDTMLMethod(RestrictedDTML, RoleManager, FSObject, HTML):
                     self.ZCacheable_set(result)
                 return result
 
-            if not isinstance(r, basestring) or RESPONSE is None:
+            if not isinstance(r, string_types) or RESPONSE is None:
                 if not self._cache_namespace_keys:
                     self.ZCacheable_set(r)
                 return r
@@ -186,16 +187,20 @@ class FSDTMLMethod(RestrictedDTML, RoleManager, FSObject, HTML):
 
     if bbb.HAS_ZSERVER:
         security.declareProtected(FTPAccess, 'manage_FTPget')
-        manage_FTPget = DTMLMethod.manage_FTPget.__func__
+        # manage_FTPget = DTMLMethod.manage_FTPget.__func__
+        manage_FTPget = DTMLMethod.manage_FTPget
 
     security.declareProtected(ViewManagementScreens, 'PrincipiaSearchSource')
-    PrincipiaSearchSource = DTMLMethod.PrincipiaSearchSource.__func__
+    # PrincipiaSearchSource = DTMLMethod.PrincipiaSearchSource.__func__
+    PrincipiaSearchSource = DTMLMethod.PrincipiaSearchSource
 
     security.declareProtected(ViewManagementScreens, 'document_src')
-    document_src = DTMLMethod.document_src.__func__
+    # document_src = DTMLMethod.document_src.__func__
+    document_src = DTMLMethod.document_src
 
     security.declareProtected(ViewManagementScreens, 'manage_haveProxy')
-    manage_haveProxy = DTMLMethod.manage_haveProxy.__func__
+    # manage_haveProxy = DTMLMethod.manage_haveProxy.__func__
+    manage_haveProxy = DTMLMethod.manage_haveProxy
 
 InitializeClass(FSDTMLMethod)
 

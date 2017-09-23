@@ -16,6 +16,8 @@
 import logging
 from warnings import warn
 
+from six import string_types
+
 from AccessControl.requestmethod import postonly
 from AccessControl.SecurityInfo import ClassSecurityInfo
 from AccessControl.SecurityManagement import getSecurityManager
@@ -489,7 +491,7 @@ class MembershipTool(UniqueObject, Folder):
         # Delete members in acl_users.
         acl_users = self.acl_users
         if _checkPermission(ManageUsers, acl_users):
-            if isinstance(member_ids, basestring):
+            if isinstance(member_ids, string_types):
                 member_ids = (member_ids,)
             member_ids = list(member_ids)
             for member_id in member_ids[:]:

@@ -43,7 +43,8 @@ from OFS.misc_ import Misc_ as MiscImage
 from OFS.ObjectManager import UNIQUE
 from OFS.PropertyManager import PropertyManager
 from OFS.SimpleItem import SimpleItem
-from thread import allocate_lock
+# from thread import allocate_lock
+from six.moves._thread import allocate_lock
 from zope.component import getUtility
 from zope.component import queryUtility
 from zope.component.interfaces import ComponentLookupError
@@ -53,6 +54,8 @@ from zope.i18nmessageid import MessageFactory
 from Products.CMFCore.exceptions import AccessControl_Unauthorized
 from Products.CMFCore.exceptions import NotFound
 from Products.CMFCore.interfaces import ICachingPolicyManager
+from ._compat import long
+
 
 SUBTEMPLATE = '__SUBTEMPLATE__'
 
@@ -340,7 +343,9 @@ def parse_etags(text,
 
     if value:
         result.append(value)
-    return apply(parse_etags, (text[l:], result))
+    # return apply(parse_etags, (text[l:], result))
+    return parse_etags(text[l:], result)
+
 
 def _checkConditionalGET(obj, extra_context):
     """A conditional GET is done using one or both of the request

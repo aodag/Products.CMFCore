@@ -478,7 +478,10 @@ InitializeClass(PortalFolder)
 
 PortalFolderFactory = Factory(PortalFolder)
 
-manage_addPortalFolder = PortalFolder.manage_addPortalFolder.__func__
+# manage_addPortalFolder = PortalFolder.manage_addPortalFolder.__func__
+print(PortalFolder.manage_addPortalFolder)
+dir(PortalFolder.manage_addPortalFolder)
+manage_addPortalFolder = PortalFolder.manage_addPortalFolder
 
 
 class ContentFilter:

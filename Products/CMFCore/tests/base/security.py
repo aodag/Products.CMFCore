@@ -13,6 +13,7 @@
 """ Unit test security.
 """
 
+from six import string_types
 from AccessControl.interfaces import IUser
 from AccessControl.PermissionRole import rolesForPermissionOn
 from Acquisition import Implicit
@@ -43,7 +44,7 @@ class PermissiveSecurityPolicy:
 
     def checkPermission(self, permission, object, context):
         roles = rolesForPermissionOn(permission, object)
-        if isinstance(roles, basestring):
+        if isinstance(roles, string_types):
             roles = [roles]
         return context.user.allowed(object, roles)
 

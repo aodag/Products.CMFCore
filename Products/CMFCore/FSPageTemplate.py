@@ -190,7 +190,8 @@ class FSPageTemplate(FSObject, Script, PageTemplate):
         return 'file:%s' % self._filepath
 
     security.declarePrivate('_ZPT_exec')
-    _ZPT_exec = ZopePageTemplate._exec.__func__
+    # _ZPT_exec = ZopePageTemplate._exec.__func__
+    _ZPT_exec = ZopePageTemplate._exec
 
     @security.private
     def _exec(self, bound_names, args, kw):
@@ -249,19 +250,24 @@ class FSPageTemplate(FSObject, Script, PageTemplate):
     # Copy over more methods
     if bbb.HAS_ZSERVER:
         security.declareProtected(FTPAccess, 'manage_FTPget')
-        manage_FTPget = ZopePageTemplate.manage_FTPget.__func__
+        # manage_FTPget = ZopePageTemplate.manage_FTPget.__func__
+        manage_FTPget = ZopePageTemplate.manage_FTPget
 
     security.declareProtected(View, 'get_size')
-    get_size = ZopePageTemplate.get_size.__func__
+    # get_size = ZopePageTemplate.get_size.__func__
+    get_size = ZopePageTemplate.get_size
     getSize = get_size
 
     security.declareProtected(ViewManagementScreens, 'PrincipiaSearchSource')
-    PrincipiaSearchSource = ZopePageTemplate.PrincipiaSearchSource.__func__
+    # PrincipiaSearchSource = ZopePageTemplate.PrincipiaSearchSource.__func__
+    PrincipiaSearchSource = ZopePageTemplate.PrincipiaSearchSource
 
     security.declareProtected(ViewManagementScreens, 'document_src')
-    document_src = ZopePageTemplate.document_src.__func__
+    # document_src = ZopePageTemplate.document_src.__func__
+    document_src = ZopePageTemplate.document_src
 
-    pt_getContext = ZopePageTemplate.pt_getContext.__func__
+    # pt_getContext = ZopePageTemplate.pt_getContext.__func__
+    pt_getContext = ZopePageTemplate.pt_getContext
 
     source_dot_xml = Src()
 
